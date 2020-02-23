@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+
+		<title>todo</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<header>
+				<section>
+					<label class="title" for="title">ToDoList</label>
+					<input type="text" placeholder="添加ToDo" required="required" id="title" @keyup.enter="add" v-model="inputValue" />
+				</section>
+			</header>
+			<section>
+
+				<h2>
+					正在进行
+					<span class="todocount">{{todolist.length}}</span>
+				</h2>
+				<!-- 正在进行的todo -->
+				<ul class="todo">
+					<li class="todolist" v-for="(item,index) in todolist">
+						<span class="finish" @click="finish(index)"></span>
+						<label>{{item}}</label>
+						<span class="clean" @click="todoremove(index)"></span>
+					</li>
+				</ul>
+				<h2>
+					已经完成
+					<span class="donecount">{{donelist.length}}</span>
+				</h2>
+				<ul class="done">
+					<li class="donelist" v-for="(item,index) in donelist">
+						<span class="finish"></span>
+						<label><s>{{item}}</s></label>
+						<span class="clean" @click="doneremove(index)"></span>
+					</li>
+				</ul>
+				<a @click="clear" v-show="todolist.length!=0||donelist.length!=0">Clean</a>
+			</section>
+		</div>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="js/main.js"></script>
+</html>
